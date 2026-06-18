@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-fs="normal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Orbit 🛰 — мессенджер нового поколения</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🛰%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<!-- ========== AUTH ========== -->
+<div id="auth" class="auth-screen">
+  <div class="auth-card">
+    <div class="logo">🛰</div>
+    <h1>Orbit</h1>
+    <p class="tagline">Мессенджер с AI и полной кастомизацией</p>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="login">Вход</button>
+      <button class="tab" data-tab="register">Регистрация</button>
+    </div>
+
+    <form id="loginForm" class="auth-form">
+      <input name="username" placeholder="Имя пользователя" required autocomplete="username" />
+      <input name="password" type="password" placeholder="Пароль" required autocomplete="current-password" />
+      <button type="submit">Войти →</button>
+      <div class="err" id="loginErr"></div>
+    </form>
+
+    <form id="registerForm" class="auth-form hidden">
+      <input name="display_name" placeholder="Ваше имя" required />
+      <input name="username" placeholder="Юзернейм (латиница)" required autocomplete="username" />
+      <input name="password" type="password" placeholder="Пароль (мин. 4 символа)" required autocomplete="new-password" />
+      <button type="submit">Создать аккаунт →</button>
+      <div class="err" id="registerErr"></div>
+    </form>
+
+    <div class="auth-features">
+      <span>✨ AI-ассистент</span>
+      <span>🎨 6 тем</span>
+      <span>⚡ Real-time</span>
+      <span>⭐ Избранное</span>
+      <span>🖼 Обои чата</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== APP ========== -->
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <button class="icon-btn" id="settingsBtn" title="Настройки">⚙️</button>
+      <input id="searchInput" placeholder="🔍 Поиск..." />
+      <button class="icon-btn" id="newChatBtn" title="Новый чат">✏️</button>
+    </div>
+
+    <div class="chat-list" id="chatList"></div>
+
+    <div class="sidebar-footer">
+      <div class="avatar" id="myAvatar">?</div>
+      <div class="me-info" id="me">
+        <div class="me-name" id="myName">—</div>
+        <div class="me-status">в сети</div>
+      </div>
+      <button class="icon-btn" id="profileBtn" title="Профиль">👤</button>
+    </div>
+  </aside>
+
+  <main class="main" id="main">
+    <div class="empty-state" id="emptyState">
+      <div class="empty-logo">🛰</div>
+      <h2>Добро пожаловать в Orbit</h2>
+      <p>Выберите чат слева или начните новую переписку</p>
+    </div>
+
+    <div class="chat-view hidden" id="chatView">
+      <header class="chat-header">
+        <button class="icon-btn back-btn" id="backBtn">←</button>
+        <div class="avatar" id="chatAvatar">?</div>
+        <div class="chat-header-info" id="chatHeaderInfo">
+          <div class="chat-title" id="chatTitle">—</div>
+          <div class="chat-subtitle" id="chatSubtitle">—</div>
+        </div>
+        <button class="icon-btn" id="chatInfoBtn" title="Информация">ℹ️</button>
+      </header>
+
+      <div class="messages" id="messages"></div>
+      <div class="typing-indicator" id="typingIndicator"></div>
+
+      <div class="reply-bar hidden" id="replyBar">
+        <div class="reply-info">
+          <div class="reply-label">↩ Ответ на:</div>
+          <div class="reply-text" id="replyText"></div>
+        </div>
+        <button class="icon-btn" id="cancelReplyBtn">✕</button>
+      </div>
+
+      <footer class="composer">
+        <button class="icon-btn" id="attachBtn" title="Прикрепить">📎</button>
+        <input type="file" id="fileInput" hidden />
+        <button class="icon-btn" id="emojiBtn" title="Эмодзи">😊</button>
+        <textarea id="messageInput" placeholder="Напишите сообщение..." rows="1"></textarea>
+        <button class="send-btn" id="sendBtn" title="Отправить">➤</button>
+      </footer>
+
+      <div class="emoji-panel hidden" id="emojiPanel"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ========== MODALS / OVERLAYS ========== -->
+<div class="modal hidden" id="modal">
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-content" id="modalContent"></div>
+</div>
+
+<div class="toast-container" id="toasts"></div>
+
+<input type="file" id="avatarFileInput" accept="image/*" hidden />
+
+<script src="/js/app.js"></script>
+</body>
+</html>
